@@ -1,5 +1,7 @@
 import React from 'react';
 import OneCard from './OneCard'
+import DisplayOneCard from './DisplayOneCard'
+
 import Test from './Test'
 import { Button, Icon, Image, Grid, Card } from 'semantic-ui-react'
         
@@ -10,35 +12,56 @@ const blanc= "https://images.unsplash.com/photo-1576615278693-f8e095e37e01?ixlib
 class Displaycards extends React.Component{
 
     state=({
+        imagesUrls: this.props.imagesUrl.slice(0, this.props.numberOfCards),
+        backImages: [...this.props.backImage.slice(0, this.props.numberOfCards)],
         firstImageFiled: false,
         matchingImage: "",
         message: "Click on a Image.",
-        preImage:"",
+        preImageId:"",
         blankImage: blanc
     })
 
     changeMassege() {
         this.setState({message: "Pick one more card."})
     }
-    compareImage=(image)=>{
+    compareImage=(id)=>{
             this.changeMassege()
-        return  image !== this.state.preImage ? this.render() : null
+
+           if(id !== this.state.preImageId ){
+            this.setState({backImages: [...this.props.backImage.slice(0, this.props.numberOfCards)],
+                firstImageFiled: false,
+                message: "Click on a Image.",
+                preImageId:""
+            })
+
+           }
     }
 
-    addImageforChecking=(image)=>{
+    addImageforChecking=(id)=>{
         this.setState({firstImageFiled: true})
-        this.setState({preImage: image})
+        this.setState({preImageId: id})
     }
 
-    checkMatching=(image)=>{
-        this.state.firstImageFiled ? this.compareImage(image) : this.addImageforChecking(image) 
+    waitASecond=(id)=>{
+        setTimeout(() => this.compareImage(id), 1000) 
+    }
+
+    checkMatching=(id)=>{
+        this.state.firstImageFiled ? this.waitASecond(id): this.addImageforChecking(id) 
+    }
+
+    handleClick=(id)=>{
+        let newArray = this.state.backImages
+        newArray[id]=this.state.imagesUrls[id]
+        this.setState({
+            backImages: newArray
+        })
+        this.checkMatching(id)
     }
   
 
     mapCards=()=>{
-        const imagesUrls = this.props.imagesUrl.slice(0, this.props.numberOfCards)
-        const backImages = this.props.backImage.slice(0, this.props.numberOfCards)
-        return imagesUrls.map((image, index) => <OneCard srcSRC={backImages[index]} image={image} key ={index} index={index} onCheckMatching={this.checkMatching}/>
+        return this.state.imagesUrls.map((image, index) => <DisplayOneCard onHandleClick={this.handleClick} srcSRC={this.state.backImages[index]}  key={index} id={index} onCheckMatching={this.checkMatching} preImageId={this.state.preImageId}/>
             )
         }
 
