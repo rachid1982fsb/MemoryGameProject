@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 const Images =[
    "https://images.unsplash.com/photo-1576600235240-ceb428ff17a1?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=regularsrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjEwNzE3NH0",
    "https://images.unsplash.com/photo-1576618148265-d77ad31fa462?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=regularsrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjEwNzE3NH0",
