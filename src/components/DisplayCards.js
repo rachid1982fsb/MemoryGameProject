@@ -1,22 +1,24 @@
 import React from 'react';
 import OneCard from './OneCard'
+import Result from './Result'
 import {Card } from 'semantic-ui-react'
+
         
 
-// const srcSRC= "https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s300/flatironschool.png"    
 const blanc= "https://cdn.themeasuredmom.com/wp-content/uploads/2013/04/back-of-memory-cards.jpg"
 
 class Displaycards extends React.Component{
-
+    
     state=({
-        imagesUrls: this.props.imagesUrl.slice(0, this.props.numberOfCards),
-        backImages: [...this.props.backImage.slice(0, this.props.numberOfCards)],
-        firstImageFiled: false,
-        matchingImage: "",
+        gameImages: this.props.gameImages.slice(0, this.props.numberOfPairs),
+        defaultCardImage: this.props.defaultCardImage,
+        firstCardFiled: false,
         message: "Click on a Image.",
-        preImageId:"",
+        preCardId:"",
         blankImage: false, 
         rendomCards: [],
+        counter: 0,
+        pairsMatch: 0
     })
 
     componentWillMount(){
@@ -24,11 +26,12 @@ class Displaycards extends React.Component{
     }
 
     setRendomCards = ()=>{
-        const backUrl = [...this.state.backImages]
-        let arr = backUrl.map((e, i) =>{
-                let h={}
-                h[i]=e
-                return h} )
+        let arr=[]
+        for(let i=0; i<this.props.numberOfPairs; i++){
+            let h={}
+            h[i]= this.state.defaultCardImage
+            arr.push(h)
+        }
         let urls= [...arr, ...arr]
         this.setState({
             rendomCards: urls.sort((a, b)=>{return 0.5 - Math.random()})
@@ -49,7 +52,7 @@ class Displaycards extends React.Component{
 
     flipCardBack=(id, urlId)=>{
         let newArray = this.state.rendomCards
-        newArray[id]={[urlId]: this.state.backImages[urlId]}
+        newArray[id]={[urlId]: this.state.defaultCardImage}
         this.setState({
             rendomCards: newArray
         })
@@ -65,42 +68,48 @@ class Displaycards extends React.Component{
     compareImage=(id)=>{
            this.changeMassege()
            let cardId=this.urlImageId(id)
-           let preCardId=this.urlImageId(this.state.preImageId)
+           let preCardId=this.urlImageId(this.state.preCardId)
            if(cardId !== preCardId ){
             this.flipCardBack(id, cardId)
-            this.flipCardBack(this.state.preImageId, preCardId)
+            this.flipCardBack(this.state.preCardId, preCardId)
             this.setState({
-                firstImageFiled: false,
+                firstCardFiled: false,
                 message: "Click on a Image.",
-                preImageId:""
+                preCardId:""
             })
            }else{
             this.flipCardToBlanc(id,cardId)
-            this.flipCardToBlanc(this.state.preImageId, preCardId)
+            this.flipCardToBlanc(this.state.preCardId, preCardId)
+            let match= this.state.pairsMatch
             this.setState({
-                firstImageFiled: false,
+                pairsMatch: match + 1,
+                firstCardFiled: false,
                 message: "Click on a Image.",
-                preImageId:""
+                preCardId:""
             })
            }
     }
 
     addImageforChecking=(id)=>{
-        this.setState({firstImageFiled: true})
+        this.setState({firstCardFiled: true})
         
-        this.setState({preImageId: id})
+        this.setState({preCardId: id})
     }
 
     beforCompare=(id)=>{
-        setTimeout(() => this.compareImage(id), 500) 
+        let count = this.state.counter
+        this.setState({
+            counter: count+1
+        })
+        setTimeout(() => this.compareImage(id), 300) 
     }
 
     isItSecondFlip=(id)=>{
-        this.state.firstImageFiled ? this.beforCompare(id): this.addImageforChecking(id) 
+        this.state.firstCardFiled ? this.beforCompare(id): this.addImageforChecking(id) 
     }
     flipCard=(id)=>{
         let newArray = this.state.rendomCards
-        newArray[id]={[this.urlImageId(id)]: this.state.imagesUrls[this.urlImageId(id)]}
+        newArray[id]={[this.urlImageId(id)]: this.state.gameImages[this.urlImageId(id)]}
         this.setState({
             rendomCards: newArray
         })
@@ -116,16 +125,20 @@ class Displaycards extends React.Component{
  
 
     mapCards=()=>{
-        return this.state.rendomCards.map((card, index) => <OneCard onHandleClick={this.handleClick} srcSRC={card} id={index} key={index} onCheckMatching={this.checkMatching} preImageId={this.state.preImageId}/>
+        return this.state.rendomCards.map((card, index) => <OneCard onHandleClick={this.handleClick} srcSRC={card} id={index} key={index} onCheckMatching={this.checkMatching} preCardId={this.state.preCardId}/>
             )
         }
 
     render(){
             return ( 
                 <>
-                    <button class="ui primary button"> Play</button>
-                    <button class="ui button"> Cancel </button>
-                    <Card.Group> {this.mapCards()}</Card.Group>
+                    <div><Card.Group> {this.mapCards()}</Card.Group></div>
+                    <div>
+                        <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs}/>
+                    </div>
+                    {/* <button class="ui primary button"> Play</button>
+                    <button class="ui button"> Cancel </button> */}
+                    
                 </>
         )
     }
