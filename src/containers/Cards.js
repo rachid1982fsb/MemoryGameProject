@@ -1,6 +1,7 @@
 import React from 'react';
 import Displaycards from '../components/DisplayCards';
 import Images from '../data.js'
+import GameLevels from '../components/GameLevels';
 
 // import { url } from 'inspector';
 const flatirLogo= "https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s300/flatironschool.png"    
@@ -13,7 +14,7 @@ class Cards extends React.Component{
         super()
         this.state=({
             defaultCardImage: flatirLogo,
-            numberOfPairs: 8,
+            numberOfPairs: 0,
             gameImages: Images,
         })
     
@@ -36,9 +37,18 @@ class Cards extends React.Component{
     //     })))
     // }
 
+    handelLevelClick=(numberPairs)=>{
+        console.log(numberPairs)
+        this.setState({
+            numberOfPairs: numberPairs
+        }) 
+    }
+
     render(){
 
-        return <Displaycards  numberOfPairs={this.state.numberOfPairs} gameImages={this.state.gameImages} backImage={this.state.backImage} defaultCardImage={this.state.defaultCardImage}/>
+        return (this.state.numberOfPairs===0 ? <GameLevels onHandelLevelClick={this.handelLevelClick}/> :
+                <Displaycards  numberOfPairs={this.state.numberOfPairs} gameImages={this.state.gameImages} backImage={this.state.backImage} defaultCardImage={this.state.defaultCardImage}/> 
+        )
     }
 }
 

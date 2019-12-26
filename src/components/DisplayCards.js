@@ -44,7 +44,6 @@ class Displaycards extends React.Component{
 
 
     urlImageId=(id)=>{
-        console.log(this.state.rendomCards[id])
         let urlId =  Object.keys(this.state.rendomCards[id])[0]
         return urlId
     }
@@ -77,7 +76,7 @@ class Displaycards extends React.Component{
                 message: "Click on a Image.",
                 preCardId:""
             })
-           }else{
+           }else if(cardId === preCardId && id !== this.state.preCardId){
             this.flipCardToBlanc(id,cardId)
             this.flipCardToBlanc(this.state.preCardId, preCardId)
             let match= this.state.pairsMatch
@@ -107,6 +106,7 @@ class Displaycards extends React.Component{
     isItSecondFlip=(id)=>{
         this.state.firstCardFiled ? this.beforCompare(id): this.addImageforChecking(id) 
     }
+
     flipCard=(id)=>{
         let newArray = this.state.rendomCards
         newArray[id]={[this.urlImageId(id)]: this.state.gameImages[this.urlImageId(id)]}
