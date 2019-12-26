@@ -16,7 +16,7 @@ const OneGameLevel = (props)=>{
                 </div>
                 <div class="extra content">
                     <button class="ui button" onClick={() => props.onHandelLevelClick(pairs)}>Play</button>
-                    <button class="ui button" onClick={() => props.onHandelImagesClick()}>Select images</button>
+                    <button class="ui button" onClick={() => props.onHandelSelectImagesClick(pairs)}>Select images</button>
                 </div>
             </div>
     )
