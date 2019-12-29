@@ -7,14 +7,14 @@ const OneGameLevel = (props)=>{
     const {name, pairs}= props.level
 
     return(
-            <div class="card">
-                <div class="blurring dimmable image">
+            <div className="card">
+                <div className="blurring dimmable image">
                     <img src={flatirLogo} alt=""/>
                 </div>
-                <div class="content">
-                    <a class="header">{name}</a>
+                <div className="content">
+                    <a className="header">{name}</a>
                 </div>
-                <div class="extra content">
+                <div className="extra content">
                     <button class="ui button" onClick={() => props.onHandelLevelClick(pairs)}>Play</button>
                     <button class="ui button" onClick={() => props.onHandelSelectImagesClick(pairs)}>Select images</button>
                 </div>

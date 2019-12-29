@@ -18,12 +18,12 @@ const Result=(props)=>{
            <>
            <Timer numberOfPairs={props.numberOfPairs} numbersPairsMatch={props.numbersPairsMatch }/>
            <div>
-           Number Of Tries: {props.counter}
+           <h3>Number Of Tries: {props.counter}</h3>
            </div>
            <div>
-           Pairs left to match: {PairsLeftToMatch()}
+          <h3> Pairs left to match: <h2>{PairsLeftToMatch()}</h2></h3>
            </div>
-           <div>{fineshMessage()}</div>
+           <div><h2>{fineshMessage()}</h2></div>
            </>)
 }
 

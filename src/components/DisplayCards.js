@@ -131,14 +131,12 @@ class Displaycards extends React.Component{
 
     render(){
             return ( 
-                <>
-                    <div><Card.Group> {this.mapCards()}</Card.Group></div>
-                    <div>
-                        <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs}/>
-                    </div>
-                    {/* <button class="ui primary button"> Play</button>
-                    <button class="ui button"> Cancel </button> */}
-                    
+                <> 
+                <div className=".App-header">
+                <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs}/>
+                </div>
+                <div> <Card.Group> {this.mapCards()}</Card.Group></div>
+                <div><button class="ui button" onClick={() => this.props.onHandleBackClick()}>Back</button></div>
                 </>
         )
     }
