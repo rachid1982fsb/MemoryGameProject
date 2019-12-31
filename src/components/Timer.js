@@ -1,16 +1,17 @@
 import React from 'react'
 
-
+const URL=`http://127.0.0.1:3000/scores`
 export default class Timer extends React.Component{
 
     state=({
-        time: 0 
+        time: 0
     })
+
     componentDidUpdate(){
      const {numberOfPairs,numbersPairsMatch }= this.props
         if(numberOfPairs-numbersPairsMatch ===0){
-            clearInterval(this.myInterval)
-            
+            clearInterval(this.myInterval)  
+            // this.props.onScore(this.state.time)
         }
     }
 
@@ -22,7 +23,43 @@ export default class Timer extends React.Component{
         }, 1000)
     }
 
+    fineshMessage=()=>{
+        this.fetchScore()
+        return   `Great you finesh in ${this.props.counter} Flips. Score: ${this.score()}`
+    }
+
+    fetchScore =()=>{
+        fetch(URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+          },
+          body: JSON.stringify({
+            finish_time: this.state.time,
+            number_of_flips: this.props.counter,
+            user_id: this.props.currentUserId
+          })
+          }).then(function(resp) {
+            if (Math.floor(resp.status/200) === 1) {
+                console.log("Great ")
+            } else {
+              console.log("ERROR", resp)
+            }
+          })
+    }
+    
+
+     score =()=>{
+        const timePoints = (60 - this.state.time>0 ? 60 - this.state.time : this.props.counter+1)
+        console.log((timePoints - this.props.counter)*this.props.numberOfPairs)
+        return ((timePoints - this.props.counter)*this.props.numberOfPairs) 
+    }
+
     render(){
-        return(<div><h3>Timer:{this.state.time}</h3></div>)
+    return(<div>
+                <h3>Timer:{this.state.time}</h3>
+                <h3>{this.props.numberOfPairs-this.props.numbersPairsMatch === 0 ? this.fineshMessage() : null}</h3>
+            </div>)
     }
 }

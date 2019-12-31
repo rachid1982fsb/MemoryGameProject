@@ -1,30 +1,32 @@
 import React from 'react';
 import Timer from './Timer'
 
-const Result=(props)=>{
+class Result extends React.Component{
 
 
-    const PairsLeftToMatch=()=>{
-        return   props.numberOfPairs-props.numbersPairsMatch 
+    state=({
+        scoreDisplay: 0
+    })
+
+     PairsLeftToMatch=()=>{
+        return   this.props.numberOfPairs-this.props.numbersPairsMatch 
     }
 
-    const fineshMessage=()=>{
-        return   props.numberOfPairs-props.numbersPairsMatch === 0 ? `Great you finesh in ${props.counter} Tries ` : ""
-    }
-    
 
+    render(){
     
-    return(
-           <>
-           <Timer numberOfPairs={props.numberOfPairs} numbersPairsMatch={props.numbersPairsMatch }/>
-           <div>
-           <h3>Number Of Tries: {props.counter}</h3>
-           </div>
-           <div>
-          <h3> Pairs left to match: <h2>{PairsLeftToMatch()}</h2></h3>
-           </div>
-           <div><h2>{fineshMessage()}</h2></div>
-           </>)
+            return(
+                <>
+                    <div>
+                        <h3>Number Of Flips: {this.props.counter}</h3>
+                    </div>
+                    <div>
+                        <h3> Pairs left to match: {this.PairsLeftToMatch()} </h3>
+                    </div>
+                    <Timer numberOfPairs={this.props.numberOfPairs} numbersPairsMatch={this.props.numbersPairsMatch } counter={this.props.counter} currentUserId={this.props.currentUserId}/>
+                </>
+                )
+    }
 }
 
 export default Result

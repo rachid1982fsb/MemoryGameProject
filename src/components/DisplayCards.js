@@ -132,11 +132,16 @@ class Displaycards extends React.Component{
     render(){
             return ( 
                 <> 
-                <div className=".App-header">
-                <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs}/>
-                </div>
-                <div> <Card.Group> {this.mapCards()}</Card.Group></div>
-                <div><button class="ui button" onClick={() => this.props.onHandleBackClick()}>Back</button></div>
+                    <div className=".App-header">
+                        <div><h3>Name: {this.props.currentUser.username} </h3></div>
+                        <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser.id}/>
+                    </div>
+                    <div>
+                         <Card.Group> {this.mapCards()}</Card.Group>
+                    </div>
+                    <div>
+                        <button className="ui button" onClick={() => this.props.onHandleBackClick()}>Back</button>
+                    </div>
                 </>
         )
     }

@@ -14,7 +14,7 @@ const mapLevels=()=>{
 
 
     return(
-                <div class="ui special cards" >
+                <div className="ui special cards" >
                   {mapLevels()}
                 </div>
     )
