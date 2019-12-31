@@ -1,6 +1,5 @@
 import React from 'react';
 
-const url = "http://127.0.0.1:3000/users"
 
 class Login extends React.Component{
 
@@ -12,21 +11,7 @@ class Login extends React.Component{
 
     })
 
-    handleLoginClick=()=>{
-        
-        let user 
-        fetch(url).then(resp => resp.json()).then(json => {
-            user = json.find(user => user.username === this.state.username )
-            if(user){
-                this.props.onHandleLogin(user)
-            }else{
-                console.log("username not found!!!")
-                 alert("username not found!!!")
-            }
-        } )
-        // this.props.onHandleLogin(this.state.username, this.state.password)
-    }
-
+ 
 
     handelUsernameChange=(e)=>{
         this.setState({
@@ -63,7 +48,7 @@ class Login extends React.Component{
                                     <i className="lock icon"></i>
                                 </div>
                             </div>
-                            <div className="ui blue submit button" onClick={() => this.handleLoginClick()}>Login</div>
+                            <div className="ui blue submit button" onClick={() => this.props.onHandleLoginClick(this.state.username)}>Login</div>
                         </div>
                     </div>
                     <div className="middle aligned column">

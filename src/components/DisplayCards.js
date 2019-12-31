@@ -1,7 +1,7 @@
 import React from 'react';
 import OneCard from './OneCard'
 import Result from './Result'
-import {Card } from 'semantic-ui-react'
+// import {Card } from 'semantic-ui-react'
 
         
 
@@ -125,6 +125,7 @@ class Displaycards extends React.Component{
  
 
     mapCards=()=>{
+        
         return this.state.rendomCards.map((card, index) => <OneCard onHandleClick={this.handleClick} srcSRC={card} id={index} key={index} onCheckMatching={this.checkMatching} preCardId={this.state.preCardId}/>
             )
         }
@@ -133,11 +134,12 @@ class Displaycards extends React.Component{
             return ( 
                 <> 
                     <div className=".App-header">
-                        <div><h3>Name: {this.props.currentUser.username} </h3></div>
-                        <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser.id}/>
+            <div>{this.props.currentUser ? <h3>Name: {this.props.currentUser.username} </h3> : "" }</div>
+                        <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser ? this.props.currentUser.id : null}/>
                     </div>
-                    <div>
-                         <Card.Group> {this.mapCards()}</Card.Group>
+                    <div className="ui four cards">
+                    {this.mapCards()}
+                         {/* <Card.Group> {this.mapCards()}</Card.Group> */}
                     </div>
                     <div>
                         <button className="ui button" onClick={() => this.props.onHandleBackClick()}>Back</button>

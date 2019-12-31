@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from './Image'
+import UploadImages from './UploadImages'
 
 
 const URL=`http://127.0.0.1:3000/images`
@@ -53,8 +54,9 @@ class SelectImages extends React.Component{
     render(){
         return (
             <form onSubmit={(e)=> this.handleSubmit(e)}>
+            <UploadImages/>
+            <input type="submit" />
             {this.mapImages()}
-            <input type="submit"/>
             </form>
         )
     }

@@ -11,7 +11,7 @@ export default class SignUp extends React.Component{
 
 
     handleSubmit=()=>{
-        this.fetchUserSearch()
+        this.fetchNewUser()
         this.props.onSubmitNewUser(this.state.username)
 
     }
@@ -30,7 +30,8 @@ export default class SignUp extends React.Component{
 
     }
 
-     fetchUserSearch=()=>{
+
+     fetchNewUser=()=>{
         fetch(`http://127.0.0.1:3000/users`, {
           method: "POST",
           headers: {
@@ -76,7 +77,7 @@ export default class SignUp extends React.Component{
                     </div>
                 </div>
                 <div className="ui blue submit button" onClick={()=> this.handleSubmit()}>Submit</div>
-                <button type="submit"> back </button>
+                <button type="submit"><a href="/" >Back</a></button>
             </div>
             </>
         )

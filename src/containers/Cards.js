@@ -24,7 +24,7 @@ class Cards extends React.Component{
     }
 
     componentDidMount(){
-        if(this.props.currentUser){
+        if(this.props.currentUser && this.props.currentUser.images){
         let userImages = this.props.currentUser.images.map(image=> image.url)
         this.setState({
             gameImages: this.uniqueImagesList([...userImages, ...ExtraImages, ...Images])
