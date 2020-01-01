@@ -6,8 +6,8 @@ const config = {
     bucketName: 'memorycardgame',
     dirName: 'images', /* optional */
     region: 'us-west-2',
-    accessKeyId: 'AKIAII7W4AW7GUKWPHIA',
-    secretAccessKey: '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',
+    accessKeyId: 'AKIAT4T7JSMVLX67LJFY',
+    secretAccessKey: '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',
 }
 
 const UploadImages=(props)=>{

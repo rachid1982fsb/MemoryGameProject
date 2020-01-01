@@ -3,6 +3,8 @@ import './App.css';
 import Cards from './containers/Cards'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import UserProfile from './components/UserProfile'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const url = "http://127.0.0.1:3000/users"
 
@@ -19,6 +21,12 @@ class App extends React.Component {
         page: "loggedIn",
         currentUser: user
     })
+    
+  }
+  handleUserClick=()=>{
+    this.setState({
+      page: "userProfile"
+  })
   }
 
   handleSingUpClick= () =>{
@@ -52,7 +60,6 @@ class App extends React.Component {
              alert("username not found!!!")
         }
     } )
-    // this.props.onHandleLogin(this.state.username, this.state.password)
 }
 
 
@@ -63,9 +70,11 @@ class App extends React.Component {
       case 'signup':
         return <SignUp onSubmitNewUser={this.submitNewUser}/>;
       case 'playAsGuest':
-        return <Cards />
+        return <Cards onHandleUserClick={this.handleUserClick}/>
       case 'loggedIn':
-        return <Cards currentUser={this.state.currentUser}/>
+        return <Cards currentUser={this.state.currentUser} onHandleUserClick={this.handleUserClick}/>
+      case 'userProfile':
+        return <UserProfile currentUser={this.state.currentUser}/>
         default:
         return null;
     }
@@ -74,10 +83,21 @@ class App extends React.Component {
 
   render(){
     return (<div>
-            <div><h1>Memory Card Game</h1></div>
-            {this.renderPage()}
-           </div>
-     ) }
+      <div><h1>Memory Card Game</h1></div>
+      {this.renderPage()}
+     </div>
+    )
+   }
 }
 
 export default App;
+
+
+
+// (<Router>
+// <Route exact path="/" render={()=>  this.renderPage()} />
+// {/* <Route exact path="/" component={App} /> */}
+// {/* <Route exact path="/signup" component={SignUp} /> */}
+// {/* <Route exact path="/login" component={App} /> */}
+// {/* <Route exact path="/user" render={() => <UserProfile page={this.state.page}/>} /> */}
+// </Router>) 

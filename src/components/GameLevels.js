@@ -13,11 +13,15 @@ const mapLevels=()=>{
 
 
 
-    return(
-                <div className="ui special cards" >
+
+    return(<>
+            <h2 class="ui block header">
+              <a href="/" >Home </a> | {props.currentUser ? <a href="/" >LogOut </a> : <a> <a href="/" >LogIn </a>  | <a href="/signup" >SignUp </a> </a>}| <a path="/user" onClick={()=>props.onHandleClick()} > Profile</a>
+            </h2>
+            <div className="ui special cards" >
                   {mapLevels()}
-                  <button type="submit"><a href="/" >Back</a></button>
-                </div>
+            </div>
+            </>
     )
 }
 

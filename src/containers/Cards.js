@@ -84,9 +84,9 @@ class Cards extends React.Component{
           case 'play':
             return <Displaycards  numberOfPairs={this.state.numberOfPairs} gameImages={this.state.gameImages} backImage={this.state.backImage} defaultCardImage={this.state.defaultCardImage} onHandleBackClick={this.handleBackClick} currentUser={this.props.currentUser ? this.props.currentUser : null}/>;
           case 'levels':
-            return <GameLevels onHandelLevelClick={this.handelLevelClick} onHandelSelectImagesClick={this.handelSelectImagesClick}/>;
+            return <GameLevels onHandelLevelClick={this.handelLevelClick} onHandelSelectImagesClick={this.handelSelectImagesClick} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleClick={this.props.onHandleUserClick}/>;
           case 'selectImages':
-            return <SelectImages gameImages={this.state.gameImages} onHandleSubmitSelectedImages={this.handleSubmitSelectedImages} currentUserId={this.props.currentUser ? this.props.currentUser.id : null}/>
+            return <SelectImages gameImages={this.state.gameImages} onHandleSubmitSelectedImages={this.handleSubmitSelectedImages} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleBackClick={this.handleBackClick}/>
             default:
             return null;
         }

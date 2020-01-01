@@ -24,7 +24,7 @@ class SelectImages extends React.Component{
     handleSubmit=(e)=>{
         e.preventDefault()
         this.props.onHandleSubmitSelectedImages(this.state.selectedImages)
-        if(this.props.currentUserId){
+        if(this.props.currentUser){
             this.state.selectedImages.map(imageUrl => this.fetchImage(imageUrl, "Selected"))
         }
     }
@@ -44,7 +44,7 @@ class SelectImages extends React.Component{
           body: JSON.stringify({
             name: type,
             url: imageUrl,
-            user_id: this.props.currentUserId
+            user_id: this.props.currentUser.id
           })
           }).then(function(resp) {
             if (Math.floor(resp.status/200) === 1) {
@@ -57,15 +57,18 @@ class SelectImages extends React.Component{
 
     render(){
         return (
+            <>
+            <h2 class="ui block header"> <a href="/" >Home </a> | {this.props.currentUser ? <a href="/" >LogOut </a> : <a> <a href="/" >LogIn </a>  | <a href="/signup" >SignUp </a> </a>}| <a href="/user" > Profile</a></h2>
             <form onSubmit={(e)=> this.handleSubmit(e)}>
                 <div className="App-header"> 
-                    {this.props.currentUserId ? <UploadImages onHandleUpload={this.handleUpload}/> : <h3><a href="/" >Login</a> to Upload your own Images</h3>}
+                    {this.props.currentUser ? <UploadImages onHandleUpload={this.handleUpload}/> : <h3><a href="/" >Login</a> to Upload your own Images</h3>}
                     <input type="submit" />
                 </div>
                 
                 {this.mapImages()}
-                <button type="submit"><a href="/" >Back</a></button>
+                <button className="ui button" onClick={() => this.props.onHandleBackClick()}>Change Game Level</button>
             </form>
+            </>
         )
     }
 }
