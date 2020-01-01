@@ -25,13 +25,16 @@ class SelectImages extends React.Component{
         e.preventDefault()
         this.props.onHandleSubmitSelectedImages(this.state.selectedImages)
         if(this.props.currentUserId){
-            this.state.selectedImages.map(imageUrl => this.fetchImage(imageUrl))
+            this.state.selectedImages.map(imageUrl => this.fetchImage(imageUrl, "Selected"))
         }
+    }
 
+    handleUpload=(url)=>{
+        this.fetchImage(url, "Uploaded")
     }
 
 
-    fetchImage =(imageUrl)=>{
+    fetchImage =(imageUrl, type)=>{
         fetch(URL, {
             method: "POST",
             headers: {
@@ -39,6 +42,7 @@ class SelectImages extends React.Component{
               Accept: "application/json"
           },
           body: JSON.stringify({
+            name: type,
             url: imageUrl,
             user_id: this.props.currentUserId
           })
@@ -54,9 +58,13 @@ class SelectImages extends React.Component{
     render(){
         return (
             <form onSubmit={(e)=> this.handleSubmit(e)}>
-            <UploadImages/>
-            <input type="submit" />
-            {this.mapImages()}
+                <div className="App-header"> 
+                    {this.props.currentUserId ? <UploadImages onHandleUpload={this.handleUpload}/> : <h3><a href="/" >Login</a> to Upload your own Images</h3>}
+                    <input type="submit" />
+                </div>
+                
+                {this.mapImages()}
+                <button type="submit"><a href="/" >Back</a></button>
             </form>
         )
     }

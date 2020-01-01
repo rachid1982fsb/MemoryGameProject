@@ -16,6 +16,7 @@ const mapLevels=()=>{
     return(
                 <div className="ui special cards" >
                   {mapLevels()}
+                  <button type="submit"><a href="/" >Back</a></button>
                 </div>
     )
 }

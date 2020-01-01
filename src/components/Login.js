@@ -29,7 +29,7 @@ class Login extends React.Component{
 
     render(){
         return(
-          <>
+          <div>
             <div className="ui placeholder segment">
                 <div className="ui two column very relaxed stackable grid">
                     <div className="column">
@@ -65,7 +65,7 @@ class Login extends React.Component{
                         Or
                 </div>
             </div>
-          </>
+          </div>
         )
     }
 

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import SignUp from './components/SignUp'
-import Login from './components/Login'
 import UserProfile from './components/UserProfile'
 
 import * as serviceWorker from './serviceWorker';
@@ -14,7 +13,7 @@ ReactDOM.render((
     <Router>
       <Route exact path="/" component={App} />
       <Route exact path="/signup" component={SignUp} />
-      <Route exact path="/login" component={Login} />
+      <Route exact path="/login" component={App} />
       <Route exact path="/user" component={UserProfile} />
     </Router>), document.getElementById('root'));
 

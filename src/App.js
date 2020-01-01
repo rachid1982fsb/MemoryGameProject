@@ -61,7 +61,7 @@ class App extends React.Component {
       case 'login':
         return <Login onHandleSingUpClick={this.handleSingUpClick} onHandlePlayAsGuestClick={this.handlePlayAsGuestClick} onHandleLoginClick={this.handleLoginClick}/>;
       case 'signup':
-        return <SignUp onSubmitNewUser={(username)=>this.submitNewUser(username)}/>;
+        return <SignUp onSubmitNewUser={this.submitNewUser}/>;
       case 'playAsGuest':
         return <Cards />
       case 'loggedIn':
@@ -74,6 +74,7 @@ class App extends React.Component {
 
   render(){
     return (<div>
+            <div><h1>Memory Card Game</h1></div>
             {this.renderPage()}
            </div>
      ) }

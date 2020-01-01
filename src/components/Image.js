@@ -10,7 +10,8 @@ const Image= (props)=>{
         <div className="ui checkbox" onChange={() => props.onHandleSelect(id)}>
             <input type="checkbox"/>
             <label>select</label>
-            <img style={{backgroundImage: `url(${image})`}} height="150px" width="150px" alt=""/>
+            {/* <img style={{backgroundImage: `url(${image})`}} height="150px" width="150px" alt=""/> */}
+            <img src={image} alt="" style={{width:"150px", height:"150px" , borderRadius: 20, padding: 5}} /> 
         </div>
     )
 }

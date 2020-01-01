@@ -10,21 +10,23 @@ const config = {
     secretAccessKey: 'ZtBBu2QNH6WEu01PeoQ2b3ANpQZYAf+2SultpwV8',
 }
 
-const UploadImages=()=>{
-let image =""
+const UploadImages=(props)=>{
+
+
+
    const upload=(e)=>{
         S3FileUpload.uploadFile(e.target.files[0], config)
         .then((data)=> {
-            image=data.location
-            console.log(image)
+            props.onHandleUpload(data.location)
         })
         .catch( (err)=>{
             alert(err)
         })
+        
     }
 
     return (<>
-             <h3>Uploading</h3>
+             <h3>Upload your own Images</h3>
              <input type="file" onChange={upload}/>
             </>)
 

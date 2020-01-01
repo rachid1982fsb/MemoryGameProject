@@ -13,16 +13,7 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+
 
 .App-link {
   color: #61dafb;
@@ -36,21 +27,4 @@
     transform: rotate(360deg);
   }
 }
-.parent {
-  width: 1200px;
-  height: 600px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  }
-  
-  .div1 {
-    width: 50%;
-    background-color: lightslategray;
-    grid-area: 2 / 2 / 4 / 4; }
-  .div2 { 
-    width: 50%;
-    background-color: beige;
-    grid-area: 2 / 4 / 4 / 6; }
+

@@ -133,12 +133,14 @@ class Displaycards extends React.Component{
     render(){
             return ( 
                 <> 
-                    <div className=".App-header">
-            <div>{this.props.currentUser ? <h3>Name: {this.props.currentUser.username} </h3> : "" }</div>
+                    <div className="App-header">
+                        <div>{this.props.currentUser ? <img src={blanc} alt="HTML5" style={{width:"150px", height:"150px"}} /> : "" }</div>
+
+                        {/* <div>{this.props.currentUser ? <h3>Name: {this.props.currentUser.username} </h3> : "" }</div> */}
                         <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser ? this.props.currentUser.id : null}/>
-                    </div>
+                    </div><br/>
                     <div className="ui four cards">
-                    {this.mapCards()}
+                        {this.mapCards()}
                          {/* <Card.Group> {this.mapCards()}</Card.Group> */}
                     </div>
                     <div>
@@ -149,5 +151,9 @@ class Displaycards extends React.Component{
     }
  
 }
+
+
+
+
 
 export default Displaycards
