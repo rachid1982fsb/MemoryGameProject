@@ -30,23 +30,7 @@ class Cards extends React.Component{
             gameImages: this.uniqueImagesList([...userImages, ...ExtraImages, ...Images])
         })
     }
-        // this.fetchImages()
     }
-
-    // fetchImages=()=>{
-    //     // let imageUrl=""
-    //     fetch(URL)
-    //     .then(resp => resp.json())
-    //     .then(json => this.getImagesUrl(json.images))
-     
-    // }
-
-    // getImagesUrl=(jsonImages)=>{
-    //   let  urls = jsonImages.map(image =>  image.url)
-    //   this.setState({
-    //         gameImages: this.uniqueImagesList([...urls, ...ExtraImages])
-    //     })
-    // }
 
     handelLevelClick=(numberPairs)=>{
         this.setState({
@@ -54,6 +38,7 @@ class Cards extends React.Component{
             page: "play"
         }) 
     }
+    
     handleBackClick=()=>{
         this.setState({
             page: "levels",
@@ -80,13 +65,15 @@ class Cards extends React.Component{
 
 
     renderPage=()=>{
-        switch(this.state.page) {
+        const {numberOfPairs, gameImages, backImage, defaultCardImage, page } = this.state
+
+        switch(page) {
           case 'play':
-            return <Displaycards  numberOfPairs={this.state.numberOfPairs} gameImages={this.state.gameImages} backImage={this.state.backImage} defaultCardImage={this.state.defaultCardImage} onHandleBackClick={this.handleBackClick} currentUser={this.props.currentUser ? this.props.currentUser : null}/>;
+            return <Displaycards  numberOfPairs={numberOfPairs} gameImages={gameImages} backImage={backImage} defaultCardImage={defaultCardImage} onHandleBackClick={this.handleBackClick} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleClick={this.props.onHandleUserClick}/>;
           case 'levels':
             return <GameLevels onHandelLevelClick={this.handelLevelClick} onHandelSelectImagesClick={this.handelSelectImagesClick} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleClick={this.props.onHandleUserClick}/>;
           case 'selectImages':
-            return <SelectImages gameImages={this.state.gameImages} onHandleSubmitSelectedImages={this.handleSubmitSelectedImages} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleBackClick={this.handleBackClick}/>
+            return <SelectImages gameImages={gameImages} onHandleSubmitSelectedImages={this.handleSubmitSelectedImages} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleBackClick={this.handleBackClick} onHandleClick={this.props.onHandleUserClick}/>
             default:
             return null;
         }

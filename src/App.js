@@ -4,7 +4,6 @@ import Cards from './containers/Cards'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
 import UserProfile from './components/UserProfile'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const url = "http://127.0.0.1:3000/users"
 
@@ -21,19 +20,16 @@ class App extends React.Component {
         page: "loggedIn",
         currentUser: user
     })
-    
   }
-  handleUserClick=()=>{
-    this.setState({
-      page: "userProfile"
-  })
-  }
+   
 
-  handleSingUpClick= () =>{
-    this.setState({
-        page: "signup"
+  handlePageClick=(selcetedPage)=>{
+      this.setState({
+        page: selcetedPage
     })
   }
+
+ 
 
   submitNewUser = (userName) =>{
       this.setState({
@@ -43,11 +39,22 @@ class App extends React.Component {
     this.handleLoginClick(userName)
   }
 
-  handlePlayAsGuestClick = () =>{
-    this.setState({
-        page: "playAsGuest"
-    })
+  handleDeleteImage=(username)=>{
+    let user 
+    fetch(url).then(resp => resp.json()).then(json => {
+        user = json.find(user => user.username === username )
+        if(user){
+            this.setState({
+              page: "userProfile",
+              currentUser: user
+            })
+        }else{
+            console.log("username not found!!!")
+             alert("username not found!!!")
+        }
+    } )
   }
+
 
   handleLoginClick=(username)=>{
     let user 
@@ -66,15 +73,15 @@ class App extends React.Component {
   renderPage=()=>{
     switch(this.state.page) {
       case 'login':
-        return <Login onHandleSingUpClick={this.handleSingUpClick} onHandlePlayAsGuestClick={this.handlePlayAsGuestClick} onHandleLoginClick={this.handleLoginClick}/>;
+        return <Login onHandleClick={this.handlePageClick} onHandleLoginClick={this.handleLoginClick}/>;
       case 'signup':
         return <SignUp onSubmitNewUser={this.submitNewUser}/>;
       case 'playAsGuest':
-        return <Cards onHandleUserClick={this.handleUserClick}/>
+        return <Cards onHandleUserClick={this.handlePageClick}/>
       case 'loggedIn':
-        return <Cards currentUser={this.state.currentUser} onHandleUserClick={this.handleUserClick}/>
+        return <Cards currentUser={this.state.currentUser} onHandleUserClick={this.handlePageClick}/>
       case 'userProfile':
-        return <UserProfile currentUser={this.state.currentUser}/>
+        return <UserProfile currentUser={this.state.currentUser} onHandlePlayClick={this.handlePageClick} onHandleDeleteImage={this.handleDeleteImage}/>
         default:
         return null;
     }

@@ -52,11 +52,11 @@ class Login extends React.Component{
                         </div>
                     </div>
                     <div className="middle aligned column">
-                    <div className="ui big button" onClick={() => this.props.onHandleSingUpClick()}>
+                    <div className="ui big button" onClick={() => this.props.onHandleClick("signup")}>
                         <i className="signup icon"></i>
                         Sign Up
                     </div><br/>
-                    <div className="ui big button" onClick={() => this.props.onHandlePlayAsGuestClick()}>
+                    <div className="ui big button" onClick={() => this.props.onHandleClick("playAsGuest")}>
                         Play As Guest
                     </div>
                     </div>
