@@ -1,8 +1,7 @@
 import React from 'react';
 import Timer from './Timer'
 
-class Result extends React.Component{
-
+export default class Result extends React.Component{
 
     state=({
         scoreDisplay: 0
@@ -11,7 +10,6 @@ class Result extends React.Component{
      PairsLeftToMatch=()=>{
         return   this.props.numberOfPairs-this.props.numbersPairsMatch 
     }
-
 
     render(){
     
@@ -28,5 +26,3 @@ class Result extends React.Component{
                 )
     }
 }
-
-export default Result

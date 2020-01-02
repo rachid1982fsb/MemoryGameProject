@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-class Login extends React.Component{
+export default class Login extends React.Component{
 
     state=({
         page: "login",
@@ -10,8 +10,6 @@ class Login extends React.Component{
         currentUser: {}
 
     })
-
- 
 
     handelUsernameChange=(e)=>{
         this.setState({
@@ -25,7 +23,6 @@ class Login extends React.Component{
         })
 
     }
-
 
     render(){
         return(
@@ -70,5 +67,3 @@ class Login extends React.Component{
     }
 
 }
-
-export default Login

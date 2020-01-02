@@ -12,8 +12,6 @@ const config = {
 
 const UploadImages=(props)=>{
 
-
-
    const upload=(e)=>{
         S3FileUpload.uploadFile(e.target.files[0], config)
         .then((data)=> {
@@ -25,11 +23,12 @@ const UploadImages=(props)=>{
         
     }
 
-    return (<>
+    return (
+            <>
              <h3>Upload your own Images</h3>
              <input type="file" onChange={upload}/>
-            </>)
-
+            </>
+            )
 }
 
 export default UploadImages

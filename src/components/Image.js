@@ -1,7 +1,5 @@
 import React from 'react'
 
-// const flatirLogo= "https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s300/flatironschool.png"    
-
 
 const Image= (props)=>{
     const {image, id} = props
@@ -10,7 +8,6 @@ const Image= (props)=>{
         <div className="ui checkbox" onChange={() => props.onHandleSelect(id)}>
             <input type="checkbox"/>
             <label>select</label>
-            {/* <img style={{backgroundImage: `url(${image})`}} height="150px" width="150px" alt=""/> */}
             <img src={image} alt="" style={{width:"150px", height:"150px" , borderRadius: 20, padding: 5}} /> 
         </div>
     )

@@ -59,9 +59,9 @@ export default class Timer extends React.Component{
     }
 
     render(){
-    return(<div>
-                <h3>Timer:{this.state.time}</h3>
-                <h3>{this.props.numberOfPairs-this.props.numbersPairsMatch === 0 ? this.fineshMessage() : null}</h3>
-            </div>)
+        return(<div>
+                    <h3>Timer:{this.state.time}</h3>
+                    <h3>{this.props.numberOfPairs-this.props.numbersPairsMatch === 0 ? this.fineshMessage() : null}</h3>
+                </div>)
     }
 }

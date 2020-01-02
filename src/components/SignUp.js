@@ -2,36 +2,29 @@ import React from 'react';
 
 export default class SignUp extends React.Component{
 
-
-
     state=({
         password: "",
         username: ""
     })
 
-
     handleSubmit=()=>{
         this.fetchNewUser()
         this.props.onSubmitNewUser(this.state.username)
-
     }
-
 
     handelUsernameChange=(e)=>{
         this.setState({
             username: e.target.value
         })
-
     }
+
     handelPasswordChange=(e)=>{
         this.setState({
             password: e.target.value
         })
-
     }
 
-
-     fetchNewUser=()=>{
+    fetchNewUser=()=>{
         fetch(`http://127.0.0.1:3000/users`, {
           method: "POST",
           headers: {

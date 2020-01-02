@@ -1,13 +1,12 @@
 import React from 'react';
 import OneCard from './OneCard'
 import Result from './Result'
-// import {Card } from 'semantic-ui-react'
-
         
 
 const blanc= "https://cdn.themeasuredmom.com/wp-content/uploads/2013/04/back-of-memory-cards.jpg"
 
-class Displaycards extends React.Component{
+
+export default class Displaycards extends React.Component{
     
     state=({
         gameImages: this.props.gameImages.slice(0, this.props.numberOfPairs),
@@ -48,6 +47,13 @@ class Displaycards extends React.Component{
         return urlId
     }
 
+    flipCard=(id)=>{
+        let newArray = this.state.rendomCards
+        newArray[id]={[this.urlImageId(id)]: this.state.gameImages[this.urlImageId(id)]}
+        this.setState({
+            rendomCards: newArray
+        })
+    }
 
     flipCardBack=(id, urlId)=>{
         let newArray = this.state.rendomCards
@@ -109,14 +115,6 @@ class Displaycards extends React.Component{
         this.state.firstCardFiled ? this.beforCompare(id): this.addImageforChecking(id) 
     }
 
-    flipCard=(id)=>{
-        let newArray = this.state.rendomCards
-        newArray[id]={[this.urlImageId(id)]: this.state.gameImages[this.urlImageId(id)]}
-        this.setState({
-            rendomCards: newArray
-        })
-    }
-
     handleClick=(id)=>{
         // changing the state withoutuseing setstate!!!!! just by assinging new array to the state 
         if(this.state.rendomCards[id][this.urlImageId(id)]!== blanc){
@@ -124,11 +122,8 @@ class Displaycards extends React.Component{
             this.isItSecondFlip(id)
         }
     }
-  
- 
 
     mapCards=()=>{
-        
         return this.state.rendomCards.map((card, index) => <OneCard onHandleClick={this.handleClick} srcSRC={card} id={index} key={index} onCheckMatching={this.checkMatching} preCardId={this.state.preCardId}/>
             )
         }
@@ -141,7 +136,7 @@ class Displaycards extends React.Component{
                         <div>{this.props.currentUser ? <img src={blanc} alt="HTML5" style={{width:"150px", height:"150px"}} /> : "" }</div>
                         <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser ? this.props.currentUser.id : null}/>
                     </div><br/>
-                    <div className="ui four cards">
+                    <div className="ui four cards container">
                         {this.mapCards()}
                     </div><br/>
                     <div>
@@ -150,11 +145,4 @@ class Displaycards extends React.Component{
                 </>
         )
     }
- 
 }
-
-
-
-
-
-export default Displaycards

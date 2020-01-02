@@ -5,7 +5,7 @@ import UploadImages from './UploadImages'
 
 const URL=`http://127.0.0.1:3000/images`
 
-class SelectImages extends React.Component{
+export default class SelectImages extends React.Component{
 
     state=({
         selectedImages: [],
@@ -68,13 +68,12 @@ class SelectImages extends React.Component{
                     {this.props.currentUser ? <UploadImages onHandleUpload={this.handleUpload}/> : <h3><a href="/" >Login</a> to Upload your own Images</h3>}
                     <input type="submit" />
                 </div>
-                
+                <div className="ui container">
                 {this.mapImages()}
+                </div>
                 <button className="ui button" onClick={() => this.props.onHandleBackClick()}>Change Game Level</button>
             </form>
             </>
         )
     }
 }
-
-export default SelectImages

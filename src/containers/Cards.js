@@ -5,12 +5,9 @@ import ExtraImages from '../dataExtraImages.js'
 import GameLevels from '../components/GameLevels';
 import SelectImages from '../components/SelectImages'
 
-// import { url } from 'inspector';
-const flatirLogo= "https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s300/flatironschool.png"    
-// let id = 2
-// const URL=`http://127.0.0.1:3000/users/${id}`
+const flatirLogo= "https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s300/flatironschool.png"
 
-class Cards extends React.Component{
+export default class Cards extends React.Component{
 
     constructor(){
         super()
@@ -38,7 +35,7 @@ class Cards extends React.Component{
             page: "play"
         }) 
     }
-    
+
     handleBackClick=()=>{
         this.setState({
             page: "levels",
@@ -84,7 +81,5 @@ class Cards extends React.Component{
         return (this.renderPage())
     }
 }
-
-export default Cards
 
      

@@ -7,7 +7,7 @@ import UserProfile from './components/UserProfile'
 
 const url = "http://127.0.0.1:3000/users"
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   state=({
     username: "",
@@ -96,15 +96,3 @@ class App extends React.Component {
     )
    }
 }
-
-export default App;
-
-
-
-// (<Router>
-// <Route exact path="/" render={()=>  this.renderPage()} />
-// {/* <Route exact path="/" component={App} /> */}
-// {/* <Route exact path="/signup" component={SignUp} /> */}
-// {/* <Route exact path="/login" component={App} /> */}
-// {/* <Route exact path="/user" render={() => <UserProfile page={this.state.page}/>} /> */}
-// </Router>) 

@@ -1,5 +1,4 @@
 import React from 'react';
-// import SelectImages from './SelectImages'
 
 const flatirLogo= "https://course_report_production.s3.amazonaws.com/rich/rich_files/rich_files/999/s300/flatironschool.png"    
 
