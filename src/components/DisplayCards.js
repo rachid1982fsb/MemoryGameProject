@@ -136,7 +136,7 @@ class Displaycards extends React.Component{
     render(){
             return ( 
                 <> 
-                    <h2 class="ui block header"> <a href="/" >Home </a> | {this.props.currentUser ? <a><a href="/" >LogOut </a> | <a path="/user" onClick={()=>this.props.onHandleClick("userProfile")} > Profile </a> </a>: <a> <a href="/" >LogIn </a>  | <a href="/signup" >SignUp </a> </a>}</h2>
+                    <h2 className="ui block header"> <a href="/" >Home </a> | {this.props.currentUser ? <><a href="/" >LogOut </a> | <a path="/user" onClick={()=>this.props.onHandleClick("userProfile")} > Profile </a> </>: <> <a href="/" >LogIn </a>  | <a href="/signup" >SignUp </a> </>}</h2>
                     <div className="App-header">
                         <div>{this.props.currentUser ? <img src={blanc} alt="HTML5" style={{width:"150px", height:"150px"}} /> : "" }</div>
                         <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser ? this.props.currentUser.id : null}/>

@@ -12,7 +12,7 @@ const OneGameLevel = (props)=>{
                     <img src={flatirLogo} alt=""/>
                 </div>
                 <div className="content">
-                    <a className="header">{name}</a>
+                    <h2 className="header">{name}</h2>
                 </div>
                 <div className="extra content">
                     <button className="ui button" onClick={() => props.onHandelLevelClick(pairs)}>Play</button>

@@ -29,6 +29,7 @@ export default class Timer extends React.Component{
     }
 
     fetchScore =()=>{
+        const gamelevel = this.props.numberOfPairs/3
         fetch(URL, {
             method: "POST",
             headers: {
@@ -36,6 +37,7 @@ export default class Timer extends React.Component{
               Accept: "application/json"
           },
           body: JSON.stringify({
+            gamelevel: gamelevel,
             finish_time: this.state.time,
             number_of_flips: this.props.counter,
             user_id: this.props.currentUserId

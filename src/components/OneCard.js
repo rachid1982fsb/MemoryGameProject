@@ -1,6 +1,5 @@
 import React from 'react';
 // import { Card } from 'semantic-ui-react'
-const blanc= "https://cdn.themeasuredmom.com/wp-content/uploads/2013/04/back-of-memory-cards.jpg"
 
 class OneCard extends React.Component{
 
