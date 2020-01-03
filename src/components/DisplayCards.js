@@ -3,7 +3,7 @@ import OneCard from './OneCard'
 import Result from './Result'
         
 
-const blanc= "https://cdn.themeasuredmom.com/wp-content/uploads/2013/04/back-of-memory-cards.jpg"
+const blank= "https://cdn.themeasuredmom.com/wp-content/uploads/2013/04/back-of-memory-cards.jpg"
 
 
 export default class Displaycards extends React.Component{
@@ -63,9 +63,9 @@ export default class Displaycards extends React.Component{
         })
     }
 
-    flipCardToBlanc=(id, urlId)=>{
+    flipCardToblank=(id, urlId)=>{
         let newArray = this.state.rendomCards
-        newArray[id][urlId]=blanc
+        newArray[id][urlId]=blank
         this.setState({
             rendomCards: newArray
         })
@@ -85,8 +85,8 @@ export default class Displaycards extends React.Component{
                 preCardId:""
             })
            }else if(cardId === preCardId && id !== this.state.preCardId){
-            this.flipCardToBlanc(id,cardId)
-            this.flipCardToBlanc(this.state.preCardId, preCardId)
+            this.flipCardToblank(id,cardId)
+            this.flipCardToblank(this.state.preCardId, preCardId)
             let match= this.state.pairsMatch
             this.setState({
                 pairsMatch: match + 1,
@@ -117,7 +117,7 @@ export default class Displaycards extends React.Component{
 
     handleClick=(id)=>{
         // changing the state withoutuseing setstate!!!!! just by assinging new array to the state 
-        if(this.state.rendomCards[id][this.urlImageId(id)]!== blanc){
+        if(this.state.rendomCards[id][this.urlImageId(id)]!== blank){
             this.flipCard(id)
             this.isItSecondFlip(id)
         }
@@ -133,7 +133,7 @@ export default class Displaycards extends React.Component{
                 <> 
                     <h2 className="ui block header"> <a href="/" >Home </a> | {this.props.currentUser ? <><a href="/" >LogOut </a> | <a path="/user" onClick={()=>this.props.onHandleClick("userProfile")} > Profile </a> </>: <> <a href="/" >LogIn </a>  | <a href="/signup" >SignUp </a> </>}</h2>
                     <div className="App-header">
-                        <div>{this.props.currentUser ? <img src={blanc} alt="HTML5" style={{width:"150px", height:"150px"}} /> : "" }</div>
+                        <div>{this.props.currentUser ? <img src={blank} alt="HTML5" style={{width:"150px", height:"150px"}} /> : "" }</div>
                         <Result counter={this.state.counter} numbersPairsMatch={this.state.pairsMatch} numberOfPairs={this.props.numberOfPairs} currentUserId={this.props.currentUser ? this.props.currentUser.id : null}/>
                     </div><br/>
                     <div className="ui four cards container">
