@@ -6,8 +6,8 @@ const config = {
     bucketName: 'memorycardgame',
     dirName: 'images', /* optional */
     region: 'us-west-2',
-    accessKeyId: 'AKIAT4T7JSMVLX67LJFY',
-    secretAccessKey: '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',
+    accessKeyId: '',
+    secretAccessKey: '',
 }
 
 const UploadImages=(props)=>{
@@ -29,6 +29,7 @@ const UploadImages=(props)=>{
              <input type="file" onChange={upload}/>
             </>
             )
+
 }
 
 export default UploadImages
