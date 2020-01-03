@@ -9,10 +9,12 @@ Memory Card Game is where you have to click on a card to see what image is under
 ## Installation
 
 Clone the repository.
+
 run npm start in the console to open the project in the browser.  
 
-This repository is set up to be used with backend copy that has to be runing in order to login. [backend instructions](https://github.com/rachid1982fsb/MemoryCardGameBackend)
-If you have a problem using loading image feature you may need to update the AWS S3 Access keys. in the UploadImages.js file you can use this [link](https://medium.com/@rachid1982fsb/upload-images-on-a-react-app-to-aws-s3-bucket-3f3114a683f1) to see how to set up your own AWS storage. 
+This repository is set up to be used with backend copy witch has to be running in order to login.  [backend instructions](https://github.com/rachid1982fsb/MemoryCardGameBackend)
+
+If you have a problem using loading image feature you may need to update the AWS S3 Access keys in the "UploadImages.js" file, you can use this [link](https://medium.com/@rachid1982fsb/upload-images-on-a-react-app-to-aws-s3-bucket-3f3114a683f1) to see how to set up your own AWS storage. 
 
 # Technology
 
