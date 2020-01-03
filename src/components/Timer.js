@@ -1,6 +1,6 @@
 import React from 'react'
 
-const URL=`http://127.0.0.1:3000/scores`
+const URL=`http://memorycardgamebackend.herokuapp.com/scores`
 export default class Timer extends React.Component{
 
     state=({

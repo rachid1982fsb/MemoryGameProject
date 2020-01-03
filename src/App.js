@@ -5,7 +5,7 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import UserProfile from './components/UserProfile'
 
-const url = "http://127.0.0.1:3000/users"
+const url = "http://memorycardgamebackend.herokuapp.com/users"
 
 export default class App extends React.Component {
 

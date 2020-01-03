@@ -2,7 +2,7 @@ import React from 'react';
 import { tsPropertySignature } from '@babel/types';
 
 
-const URL=`http://127.0.0.1:3000/images`
+const URL=`http://memorycardgamebackend.herokuapp.com/images`
 
 const UserProfile=(props)=>{
 
@@ -51,12 +51,14 @@ const UserProfile=(props)=>{
 
     const mapUserScores=()=>{
         const scoresLevels=["Very Easy", "Easy", "Mediam", "Hard"]
-        const veryEasyScore=(props.currentUser.scores.filter(score => score.gamelevel === "1"))[0]
-        const EasyScore=(props.currentUser.scores.filter(score => score.gamelevel === "2"))[0]
-        const MediamScore=(props.currentUser.scores.filter(score => score.gamelevel === "3"))[0]
-        const hardScore=(props.currentUser.scores.filter(score => score.gamelevel === "4"))[0]
-        const highScores=[veryEasyScore, EasyScore, MediamScore, hardScore]
-        return mapScoresLevels(scoresLevels, highScores)
+        if (props.currentUser.scores){
+            const veryEasyScore=(props.currentUser.scores.filter(score => score.gamelevel === "1"))[0]
+            const EasyScore=(props.currentUser.scores.filter(score => score.gamelevel === "2"))[0]
+            const MediamScore=(props.currentUser.scores.filter(score => score.gamelevel === "3"))[0]
+            const hardScore=(props.currentUser.scores.filter(score => score.gamelevel === "4"))[0]
+            const highScores=[veryEasyScore, EasyScore, MediamScore, hardScore]
+            return mapScoresLevels(scoresLevels, highScores)
+        }
     }
 
     const mapScoresLevels=(scoresLevels,highScores)=>{

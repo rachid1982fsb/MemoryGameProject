@@ -3,7 +3,7 @@ import Image from './Image'
 import UploadImages from './UploadImages'
 
 
-const URL=`http://127.0.0.1:3000/images`
+const URL=`http://memorycardgamebackend.herokuapp.com/images`
 
 export default class SelectImages extends React.Component{
 

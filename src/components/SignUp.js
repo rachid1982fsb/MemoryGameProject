@@ -25,7 +25,7 @@ export default class SignUp extends React.Component{
     }
 
     fetchNewUser=()=>{
-        fetch(`http://127.0.0.1:3000/users`, {
+        fetch(`http://memorycardgamebackend.herokuapp.com/users`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
