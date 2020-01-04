@@ -29,6 +29,14 @@ export default class Cards extends React.Component{
     }
     }
 
+    componentWillReceiveProps(nextProps) {
+        // You don't have to do this check first, but it can help prevent an unneeded render
+        if (nextProps.currentUser.images) {
+        let userImages = nextProps.currentUser.images.map(image=> image.url)
+          this.setState({ gameImages: this.uniqueImagesList([...userImages, ...ExtraImages, ...Images]) });
+        }
+      }
+
     handelLevelClick=(numberPairs)=>{
         this.setState({
             numberOfPairs: numberPairs,
@@ -38,8 +46,7 @@ export default class Cards extends React.Component{
 
     handleBackClick=()=>{
         this.setState({
-            page: "levels",
-            gameImages: Images
+            page: "levels"
         }) 
     }
 
@@ -70,7 +77,7 @@ export default class Cards extends React.Component{
           case 'levels':
             return <GameLevels onHandelLevelClick={this.handelLevelClick} onHandelSelectImagesClick={this.handelSelectImagesClick} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleClick={this.props.onHandleUserClick}/>;
           case 'selectImages':
-            return <SelectImages gameImages={gameImages} onHandleSubmitSelectedImages={this.handleSubmitSelectedImages} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleBackClick={this.handleBackClick} onHandleClick={this.props.onHandleUserClick}/>
+            return <SelectImages gameImages={gameImages} onHandleSubmitSelectedImages={this.handleSubmitSelectedImages} currentUser={this.props.currentUser ? this.props.currentUser : null} onHandleBackClick={this.handleBackClick} onHandleClick={this.props.onHandleUserClick} onFetchUsername={this.props.onFetchUsername}/>
             default:
             return null;
         }

@@ -38,6 +38,7 @@ const UserProfile=(props)=>{
     }
 
     const calculateScore=(highScores)=>{
+        
        return highScores.map(score => {
                         if(score){
                             let timePoint = 1
@@ -52,16 +53,16 @@ const UserProfile=(props)=>{
     const mapUserScores=()=>{
         const scoresLevels=["Very Easy", "Easy", "Mediam", "Hard"]
         if (props.currentUser.scores){
-            const veryEasyScore=(props.currentUser.scores.filter(score => score.gamelevel === "1"))[0]
-            const EasyScore=(props.currentUser.scores.filter(score => score.gamelevel === "2"))[0]
-            const MediamScore=(props.currentUser.scores.filter(score => score.gamelevel === "3"))[0]
-            const hardScore=(props.currentUser.scores.filter(score => score.gamelevel === "4"))[0]
+            const veryEasyScore=(props.currentUser.scores.filter(score => score.gamelevel === 1 ))[0]
+            const EasyScore=(props.currentUser.scores.filter(score => score.gamelevel === 2 ))[0]
+            const MediamScore=(props.currentUser.scores.filter(score => score.gamelevel === 3 ))[0]
+            const hardScore=(props.currentUser.scores.filter(score => score.gamelevel === 4 ))[0]
             const highScores=[veryEasyScore, EasyScore, MediamScore, hardScore]
             return mapScoresLevels(scoresLevels, highScores)
         }
     }
 
-    const mapScoresLevels=(scoresLevels,highScores)=>{
+    const mapScoresLevels=(scoresLevels, highScores)=>{
 
         return scoresLevels.map((level, index) =>  
                                                 <div className="card" key={index}>

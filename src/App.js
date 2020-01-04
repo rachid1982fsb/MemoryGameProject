@@ -13,15 +13,7 @@ export default class App extends React.Component {
     username: "",
     page: "login",
     currentUser: {}
-  })
-
-  handleLogin=(user)=>{
-      this.setState({
-        page: "loggedIn",
-        currentUser: user
-    })
-  }
-   
+  })   
 
   handlePageClick=(selcetedPage)=>{
       this.setState({
@@ -48,27 +40,40 @@ export default class App extends React.Component {
               page: "userProfile",
               currentUser: user
             })
-        }else{
-            console.log("username not found!!!")
-             alert("username not found!!!")
         }
     } )
   }
 
+  
+  fetchUsername=(username)=>{
+    let user
+    fetch(url).then(resp => resp.json()).then(json => {
+      user = json.find(user => user.username === username )
+      if(user){
+        this.setState({
+          currentUser: user
+        })    
+      }else{
+        console.log("username not found!!!")   
+        }        
+      })
+  }
 
   handleLoginClick=(username)=>{
-    let user 
+    let user
     fetch(url).then(resp => resp.json()).then(json => {
-        user = json.find(user => user.username === username )
-        if(user){
-            this.handleLogin(user)
-        }else{
-            console.log("username not found!!!")
-             alert("username not found!!!")
-        }
-    } )
-}
-
+      user = json.find(user => user.username === username )
+      if(user){
+        this.setState({
+          currentUser: user,
+          page: "loggedIn"
+        })    
+      }else{
+        alert("Username not found!!!") 
+        console.log("username not found!!!")   
+        }        
+      })
+  }
 
   renderPage=()=>{
     switch(this.state.page) {
@@ -79,7 +84,7 @@ export default class App extends React.Component {
       case 'playAsGuest':
         return <Cards onHandleUserClick={this.handlePageClick}/>
       case 'loggedIn':
-        return <Cards currentUser={this.state.currentUser} onHandleUserClick={this.handlePageClick}/>
+        return <Cards currentUser={this.state.currentUser} onHandleUserClick={this.handlePageClick} onFetchUsername={this.fetchUsername}/>
       case 'userProfile':
         return <UserProfile currentUser={this.state.currentUser} onHandlePlayClick={this.handlePageClick} onHandleDeleteImage={this.handleDeleteImage}/>
         default:

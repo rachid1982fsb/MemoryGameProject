@@ -8,8 +8,8 @@ const URL=`http://memorycardgamebackend.herokuapp.com/images`
 export default class SelectImages extends React.Component{
 
     state=({
-        selectedImages: [],
-        displayedImages: this.props.gameImages
+        selectedImages: []
+        // displayedImages: this.props.gameImages
     })
 
     handleSelect=(id)=>{
@@ -19,7 +19,7 @@ export default class SelectImages extends React.Component{
     }
 
     mapImages=()=>{
-       return  this.state.displayedImages.map((image, index) => <Image image={image} key={index} id={index} onHandleSelect={this.handleSelect}/> )
+       return  this.props.gameImages.map((image, index) => <Image image={image} key={index} id={index} onHandleSelect={this.handleSelect}/> )
     }
 
     handleSubmit=(e)=>{
@@ -32,9 +32,6 @@ export default class SelectImages extends React.Component{
 
     handleUpload=(url)=>{
         this.fetchImage(url, "Uploaded")
-        this.setState({
-            displayedImages: [url, ...this.props.gameImages]
-        })
     }
 
 
@@ -57,6 +54,7 @@ export default class SelectImages extends React.Component{
               console.log("ERROR", resp)
             }
           })
+          this.props.onFetchUsername(this.props.currentUser.username)
     }
 
     render(){
