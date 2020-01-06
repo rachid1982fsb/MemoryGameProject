@@ -12,6 +12,7 @@ export default class Login extends React.Component{
     })
 
     handelUsernameChange=(e)=>{
+        console.log(process.env.REACT_APP_SECRET_ACCESS_KEY)
         this.setState({
             username: e.target.value
         })
